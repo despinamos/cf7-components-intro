@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@theme {
+    --color-cf-dark-red: #782024;
+    --color-cf-dark-grey: #202123;
+    --color-cf-black: #000;
+}
+
 /**!*/
 /*:root {*/
 /*  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;*/
