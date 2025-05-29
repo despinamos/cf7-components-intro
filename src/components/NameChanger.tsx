@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-const NameChanger = (() => {
+const NameChanger = () => {
     const [name, setName] = useState("");
 
     useEffect(() => {
@@ -24,6 +24,6 @@ const NameChanger = (() => {
             </div>
         </>
     )
-})
+}
 
 export default NameChanger;
