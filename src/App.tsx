@@ -1,44 +1,41 @@
-// import ClassComponent from "./components/ClassComponent.tsx";
-// import FunctionalComponent from "./components/FunctionalComponent.tsx";
-// import ArrowFunctionalCOmponent from "./components/ArrowFunctionalCOmponent.tsx";
-// import ArrowFunctionalComponentWithProps from "./components/ArrowFunctionalComponentWithProps.tsx";
-// import ArrowFunctionalComponentwithPropsType from "./components/ArrowFunctionalComponentwithPropsType.tsx";
-// import CodingFactoryLogo from "./components/CodingFactoryLogo.tsx";
-import Layout from "./components/Layout.tsx";
-import NameChanger from "./components/NameChanger.tsx";
-//import ClassComponentWithState from "./components/ClassComponentWithState.tsx";
-// import FunctionalComponentWithState from "./components/FunctionalComponentWithState.tsx";
-//import Counter from "./components/Counter.tsx";
-//import CounterWithMoreStates from "./components/CounterWithMoreStates.tsx";
-//import CounterAdvanced from "./components/CounterAdvanced.tsx";
-//import CounterWithCustomHook from "./components/CounterWithCustomHook.tsx";
-//import CounterAdvancedWithCustomHook from "./components/CounterAdvancedWithCustomHook.tsx";
-//import CounterWithReducer from "./components/CounterWithReducer.tsx";
-//import Todo from "./components/Todo/Todo.tsx";
+import {BrowserRouter, Routes, Route} from "react-router"
+//import Layout from "./components/Layout"
+import HomePage from "./pages/HomePage.tsx";
+import NameChangerPage from "./pages/NameChangerPage.tsx";
+import OnlineStatusPage from "./pages/OnlineStatusPage.tsx";
+import UserPage from "./pages/UserPage.tsx";
+import RouterLayout from "./components/RouterLayout.tsx";
+import ExamplesPage from "./pages/ExamplesPage.tsx";
+import RouterExamplesLayout from "./components/RouterExamplesLayout.tsx";
 
 function App() {
 
+    // useEffect(() => {
+    //     const id: number = setInterval(() => console.log("tick"), 1000);
+    //     return () => clearInterval(id);
+    // }, []);
+
   return (
     <>
-        <Layout>
-            {/*<ClassComponent/>*/}
-            {/*<FunctionalComponent/>*/}
-            {/*<ArrowFunctionalCOmponent/>*/}
-            {/*<ArrowFunctionalComponentWithProps title="Is Arrow Functional Component with Props"/>*/}
-            {/*<ArrowFunctionalComponentwithPropsType*/}
-            {/*    title="Hello World"*/}
-            {/*    description="This is a description"/>*/}
-            {/*<FunctionalComponent/>*/}
+        <BrowserRouter>
+                <Routes>
+                    <Route element={<RouterLayout/>}>
+                        {/*<Route path="/" element={<HomePage />}/>*/}
+                        <Route index element={<HomePage/>}/>
+                        <Route path="users/:userId" element={<UserPage />}/>
+                        <Route path="users" element={<UserPage/>}/>
+                    </Route>
 
-            {/*<ClassComponentWithState/>*/}
-            {/*<FunctionalComponentWithState/>*/}
-            {/*<Counter/>*/}
-            {/*<CounterWithMoreStates/>*/}
-           <NameChanger/>
-           {/* <CounterAdvanced/>*/}
-           {/* <CounterAdvancedWithCustomHook/>*/}
-           {/* <Todo/>*/}
-        </Layout>
+                    {/*<Route index element={<HomePage />}/>*/}
+
+                    <Route path="examples"  element={<RouterExamplesLayout/>}>
+                        <Route index element={<ExamplesPage/>}/>
+                        <Route path="name-changer" element={<NameChangerPage/>}/>
+                        <Route path="online-status" element={<OnlineStatusPage/>}/>
+                    </Route>
+                    {/*<Route path={"files/*" }*/}
+                </Routes>
+        </BrowserRouter>
     </>
   )
 }
