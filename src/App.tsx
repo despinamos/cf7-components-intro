@@ -7,6 +7,8 @@ import UserPage from "./pages/UserPage.tsx";
 import RouterLayout from "./components/RouterLayout.tsx";
 import ExamplesPage from "./pages/ExamplesPage.tsx";
 import RouterExamplesLayout from "./components/RouterExamplesLayout.tsx";
+import AutoRedirectPage from "./pages/AutoRedirectPage.tsx";
+import NotFoundPage from "./pages/NotFoundPage.tsx";
 
 function App() {
 
@@ -19,21 +21,21 @@ function App() {
     <>
         <BrowserRouter>
                 <Routes>
-                    <Route element={<RouterLayout/>}>
-                        {/*<Route path="/" element={<HomePage />}/>*/}
-                        <Route index element={<HomePage/>}/>
-                        <Route path="users/:userId" element={<UserPage />}/>
-                        <Route path="users" element={<UserPage/>}/>
-                    </Route>
-
-                    {/*<Route index element={<HomePage />}/>*/}
 
                     <Route path="examples"  element={<RouterExamplesLayout/>}>
                         <Route index element={<ExamplesPage/>}/>
                         <Route path="name-changer" element={<NameChangerPage/>}/>
                         <Route path="online-status" element={<OnlineStatusPage/>}/>
+                        <Route path="auto-redirect" element={<AutoRedirectPage/>}/>
                     </Route>
-                    {/*<Route path={"files/*" }*/}
+
+                    <Route element={<RouterLayout/>}>
+                        {/*<Route path="/" element={<HomePage />}/>*/}
+                        <Route index element={<HomePage/>}/>
+                        <Route path="users/:userId" element={<UserPage />}/>
+                        <Route path="users" element={<UserPage/>}/>
+                        <Route path="*" element={<NotFoundPage/>}/>
+                    </Route>
                 </Routes>
         </BrowserRouter>
     </>
