@@ -8,9 +8,9 @@ import AutoRedirectPage from "./pages/AutoRedirectPage.tsx";
 import NotFoundPage from "./pages/NotFoundPage.tsx";
 import FocusInput from "./components/FocusInput.tsx";
 import UncontrolledInput from "./components/UncontrolledInput.tsx";
-import MultiFieldForm from "./components/MultiFieldForm.tsx";
 import ControlledInput from "./components/ControlledInput.tsx";
 import ExamplesPage from "./pages/ExamplesPage.tsx";
+import MultiFieldFormWithValidation from "./components/MultiFieldFormWithValidation.tsx";
 
 function App() {
 
@@ -37,7 +37,7 @@ function App() {
                     <Route element={<RouterLayout/>}>
                         {/*<Route path="/" element={<HomePage />}/>*/}
                         {/*<Route index element={<HomePage/>}/>*/}
-                        <Route index element={<MultiFieldForm/>}/>
+                        <Route index element={<MultiFieldFormWithValidation/>}/>
                         <Route path="users/:userId" element={<UserPage />}/>
                         <Route path="users" element={<UserPage/>}/>
                         <Route path="*" element={<NotFoundPage/>}/>
