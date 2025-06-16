@@ -34,24 +34,23 @@ const MultiFieldFormWithZodValidation = () => {
     const [submittedData, setSubmittedData] = useState<FormValues | null>(null);
     const [errors, setErrors] = useState<FormErrors | null>(null);
 
-    const validateForm = (values: FormValues): FormErrors => {
-        const errors: FormErrors = {};
+    const validateForm = () => {
+        const result = formSchema.safeParse(values);
+        // {success: true, data: validatedData}
+        // {success: false, errors: errors}
+        if (!result.success) {
+            const newErrors : FormErrors = {};
 
-        if (!values.name.trim()) {
-            errors.name = "Name is empty.";
+            result.error.issues.forEach((issue) => {
+                const fieldName = issue.path[0] as keyof FormValues;
+                newErrors[fieldName] = issue.message;
+            });
+            setErrors(newErrors);
+            return false;
         }
 
-        if (!values.email.trim() ||
-            !/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/
-                .test(values.email.trim())) {
-            errors.email = "Email is empty or invalid.";
-        }
-
-        if (!values.message.trim() || values.message.length < 5) {
-            errors.message = "Message is empty or less than 5 characters.";
-        }
-
-        return errors;
+        setErrors({});
+        return true;
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -73,22 +72,18 @@ const MultiFieldFormWithZodValidation = () => {
 
     const handleClear = () => {
         setValues(initialValues);
-        setErrors(null);
+        setErrors({});
         setSubmittedData(null);
     };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        const validationErrors = validateForm(values);
-
-        if (Object.keys(validationErrors).length > 0) {
-            setErrors(validationErrors);
-            return;
+        const isValid = validateForm();
+        if (isValid) {
+            setSubmittedData(values);
+            setValues(initialValues);
         }
-        setSubmittedData(values);
-        setValues(initialValues);
-        setErrors(null);
     }
 
     return (

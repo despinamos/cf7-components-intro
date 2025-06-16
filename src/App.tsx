@@ -10,7 +10,8 @@ import FocusInput from "./components/FocusInput.tsx";
 import UncontrolledInput from "./components/UncontrolledInput.tsx";
 import ControlledInput from "./components/ControlledInput.tsx";
 import ExamplesPage from "./pages/ExamplesPage.tsx";
-import MultiFieldFormWithZodValidation from "./components/MultiFieldFormWithZodValidation.tsx";
+//import MultiFieldFormWithZodValidation from "./components/MultiFieldFormWithZodValidation.tsx";
+import MultiFieldFormWithReactHook from "./components/MultiFieldFormWithReactHook.tsx";
 
 function App() {
 
@@ -37,7 +38,8 @@ function App() {
                     <Route element={<RouterLayout/>}>
                         {/*<Route path="/" element={<HomePage />}/>*/}
                         {/*<Route index element={<HomePage/>}/>*/}
-                        <Route index element={<MultiFieldFormWithZodValidation/>}/>
+                        <Route index element={<MultiFieldFormWithReactHook/>}/>
+                        {/*<Route index element={<MultiFieldFormWithZodValidation/>}/>*/}
                         <Route path="users/:userId" element={<UserPage />}/>
                         <Route path="users" element={<UserPage/>}/>
                         <Route path="*" element={<NotFoundPage/>}/>
